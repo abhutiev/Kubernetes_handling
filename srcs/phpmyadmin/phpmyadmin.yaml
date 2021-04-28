@@ -1,25 +1,26 @@
-apiVersion: v1 # до версии 1.9.0 нужно использовать apps/v1beta2
+apiVersion: v1
 kind: Service
 metadata:
-  name: phpmyadmin-service
+  labels:
+    app: phpmyadmin
+  name: phpmyadmin
   annotations:
-    metallb.universe.tf/allow-shared-ip: default
+    metallb.universe.tf/allow-shared-ip: shared
 spec:
+  ports:
+  - name: phpmyadmin
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
   selector:
     app: phpmyadmin
   type: LoadBalancer
-  loadBalancerIP: 192.168.99.100
-  ports:
-    - protocol: TCP
-      port: 5000
-      name: phpmyadmin-port
-      targetPort: 5000
-
+  loadBalancerIP: 192.168.99.134
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phpmyadmin-deployment
+  name: phpmyadmin
   labels:
     app: phpmyadmin
 spec:
@@ -27,16 +28,14 @@ spec:
   selector:
     matchLabels:
       app: phpmyadmin
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
         app: phpmyadmin
     spec:
       containers:
-        - name: phpmyadmin
-          image: phpmyadmin_container
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 5000
+      - image: phpmyadmin_image
+        imagePullPolicy: Never
+        name: phpmyadmin
+        ports:
+          - containerPort: 5000
