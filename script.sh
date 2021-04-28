@@ -4,6 +4,7 @@ minikube start --vm-driver=virtualbox
 eval $(minikube docker-env)
 
 # Load Balancer turning on
+minikube addons enable metrics-server
 minikube addons enable metallb
 
 # Dashboard addon turning on
