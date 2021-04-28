@@ -2,14 +2,16 @@
 
 define( 'DB_NAME', 'wordpress' );
 
-define( 'DB_USER', 'abhutiev' );
+define( 'DB_USER', 'root' );
 
-define( 'DB_PASSWORD', 'abhutiev' );
+define( 'DB_PASSWORD', 'root' );
 
 define( 'DB_HOST', 'mysql' );
 
 define( 'DB_CHARSET', 'utf8' );
 
+
+define( 'DB_COLLATE', '' );
 define('AUTH_KEY',         'B&y|l9X.8//i1k]:?4h1/:wlH@*WNwD*G+zw)V8uRp4gB$>7w;@Y7&q:Oa4-P+cF');
 define('SECURE_AUTH_KEY',  'uTgJS7k4fg6k:*lnTLIy5o%i*R2qB_~_*n9s_[!Q.S:fEQ;|3-,Qtn=#reDB4H>P');
 define('LOGGED_IN_KEY',    'KjE>S.,Rmj?At+Bo}JB<P+yQB`Yt4wpFfMWi1{;,)EkvxAh|y-f^V0DTW)<l*;b|');
@@ -24,7 +26,7 @@ $table_prefix = 'wp_';
 define( 'WP_DEBUG', false );
 
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+        define( 'ABSPATH', __DIR__ . '/' );
 }
 
 require_once ABSPATH . 'wp-settings.php';
