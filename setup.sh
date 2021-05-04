@@ -66,9 +66,6 @@ kubectl apply -f srcs/wordpress/wordpress.yaml
 kubectl apply -f srcs/grafana/grafana.yaml
 kubectl apply -f srcs/influxdb/influxdb.yaml
 
-#  Create secret
-kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-
 #  Dashboard
 minikube dashboard
 
